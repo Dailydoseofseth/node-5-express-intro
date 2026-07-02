@@ -85,22 +85,22 @@ app.get("/say-hello/:name/:language", (req, res) => {
 
   switch (language) {
     case "english":
-      greeting = `Hello, ${name}!`;
+      greeting = `🇺🇸 Hello, ${name}!`;
       break;
     case "spanish":
-      greeting = `Hola, ${name}!`;
+      greeting = `🌮🇲🇽 Hola, ${name}!`;
       break;
     case "vietnamese":
-      greeting = `Xin chao, ${name}!`;
+      greeting = `🇻🇳 Xin chao, ${name}!`;
       break;
     case "turkish":
-      greeting = `Merhaba, ${name}!`;
+      greeting = `🇹🇷 Merhaba, ${name}!`;
       break;
     case "taiwanese":
-      greeting = `李浩(Li ho), ${name}!`;
+      greeting = `💮🇹🇼 李浩(Li ho), ${name}!`;
       break;
     default:
-      greeting = "Language not supported. More coming SOON!";
+      greeting = "😵🏴‍☠️ Language not supported. More coming SOON!";
   }
 
   res.send(greeting);
@@ -120,9 +120,34 @@ app.get("/say-hello/:name/:language", (req, res) => {
 // --------------------------------
 
 // 1. 🏆 Add a /calculate-dog-years/:dogName/:humanYears endpoint that calculates a dog's age in dog years. Refer to your dogAgeCalculator.js file.
+app.get("/calculate-dog-years/:dogName/:humanYears", (req, res) => {
+  console.log(req.params);
+  const dogName = req.params.dogName;
+  const humanYears = req.params.humanYears;
+  const dogYears = humanYears * 7;
+  console.log(
+    `Your dog, ${dogName}, is ${humanYears} yrs old, AND that's ${dogYears} yrs old in dog years!`,
+  );
+
+  res.send(
+    `Your dog, ${dogName}, is ${humanYears} yrs old, AND that's ${dogYears} yrs old in dog years!`,
+  );
+});
 
 // 2. 🏆 Add a /calculate-tip/:bill/:tipPercentage/:numGuests endpoint that calculates the amount each guests owes. Refer to your tipCalculator.js file.
+app.get("/calculate-tip/:bill/:tipPercentage/:numGuests", (req, res) => {
+  console.log(req.params);
+  const bill = req.params.bill;
+  const tipPercentage = req.params.tipPercentage;
+  const numGuests = req.params.numGuests;
 
+  const tipAmount = (bill * (tipPercentage / 100)) / numGuests;
+  const totalAmount = bill / numGuests + tipAmount;
+
+  res.send(
+    `Each guest owes 💵 $${totalAmount.toFixed(2)}. This includes a tip of 💸 $${tipAmount.toFixed(2)} per guest! 💰🤑💰`,
+  );
+});
 // --------------------------------
 // LEVEL 4 CHALLENGES — USING THE FILE SYSTEM MODULE
 // --------------------------------
