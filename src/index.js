@@ -35,12 +35,12 @@ app.get("/get-user", (req, res) => {
 });
 
 app.get("/get-user-name/:userName", (req, res) => {
-        console.log(req);
-    console.log(req.params);
-    console.log(req.params.userName);
-    let name = req.params.userName;
-    res.send(`Hello ${name}!`);
-//   res.send("Hello User ZERO!");
+  console.log(req);
+  console.log(req.params);
+  console.log(req.params.userName);
+  let name = req.params.userName;
+  res.send(`Hello ${name}!`);
+  //   res.send("Hello User ZERO!");
 });
 
 app.get("/order-tacos/:protien/:numTacos", (req, res) => {
@@ -49,8 +49,6 @@ app.get("/order-tacos/:protien/:numTacos", (req, res) => {
 
   res.send(`Your order of ${numTacos} ${protien} tacos is on the way!`);
 });
-
-
 
 // --------------------------------
 // 🚀 LEVEL 1 CHALLENGES
@@ -71,8 +69,45 @@ app.get("/hap-bday", (req, res) => {
 // --------------------------------
 
 // 1. 🏆 Add a /happy-birthday/:name endpoint says "Happy birthday, [name]!!!"
+app.get("/hap-bday/:name", (req, res) => {
+  const name = req.params.name;
+  res.send(`Happy birthday, ${name}!!!`);
+});
 
-// 2. 🏆 Add a /say-hello/:name/:language endpoint that says hello in multiple languages. Examples:
+// 2. 🏆 Add a /say-hello/:name/:language endpoint that says hello in multiple languages.
+app.get("/say-hello/:name/:language", (req, res) => {
+  console.log(req.params);
+
+  const name = req.params.name;
+  const language = req.params.language.toLowerCase();
+
+  let greeting;
+
+  switch (language) {
+    case "english":
+      greeting = `Hello, ${name}!`;
+      break;
+    case "spanish":
+      greeting = `Hola, ${name}!`;
+      break;
+    case "vietnamese":
+      greeting = `Xin chao, ${name}!`;
+      break;
+    case "turkish":
+      greeting = `Merhaba, ${name}!`;
+      break;
+    case "taiwanese":
+      greeting = `李浩(Li ho), ${name}!`;
+      break;
+    default:
+      greeting = "Language not supported. More coming SOON!";
+  }
+
+  res.send(greeting);
+  console.log(greeting);
+});
+
+// Examples:
 //      - If language = "English", respond with "Hello, [name]!"
 //      - If language = "Spanish", respond with "Hola, [name]!"
 //      - If language = "Vietnamese", respond with "Xin chao, [name]!"
