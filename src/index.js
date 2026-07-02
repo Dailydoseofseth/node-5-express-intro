@@ -22,11 +22,17 @@ const port = 3000;
 app.use(express.json());
 
 // Turn on the server and listen to the port for requests. The callback function will run when the server is ready to accept requests.
+
+// PORT is an arg. ()=>{} IS 2ND ARG & is a callback FUNCTION that runs when the server is ready to accept requests. The callback function is optional.
+
+// So the params determine what can be argued about - boundaries
 app.listen(port, () => {
   console.log(`My server is listening on port: ${port}`);
 });
 
+// using a get method, with 2 params: 1) the endpoint, 2) a callback function that runs when the endpoint is hit. The callback function has 2 params: 1) req (request), 2) res (response) AND req for example is the PARAM & its arg or value comes from the "/" endpoint, WITH the res.send() method sending a response back to the client. The res.send() method can send a string, an object, or an array.
 app.get("/", (req, res) => {
+  console.log("SHOW ME THE REQ ROOM:", req);
   res.send("Hello Universe!");
 });
 
@@ -75,14 +81,26 @@ app.get("/hap-bday/:name", (req, res) => {
 });
 
 // 2. 🏆 Add a /say-hello/:name/:language endpoint that says hello in multiple languages.
+
+// THIS ADDS DYNAMIC PARAMETERS TO THE ENDPOINT (URL being the 1st og the 2 ARGs & callback FUNC being the 2nd ARG), SO THAT, THE USER CAN INPUT THEIR NAME AND LANGUAGE OF CHOICE in the browsers URL bar. 
+// THE SWITCH STATEMENT THEN CHECKS THE LANGUAGE PARAMETER AND RESPONDS WITH THE APPROPRIATE GREETING. IF THE LANGUAGE IS NOT SUPPORTED, IT RESPONDS WITH A DEFAULT MESSAGE.
 app.get("/say-hello/:name/:language", (req, res) => {
   console.log(req.params);
 
   const name = req.params.name;
   const language = req.params.language.toLowerCase();
 
+  // greeeting VAR DECLARED to hold the response message
   let greeting;
 
+  // switch is the same as if/else statements, but is more efficient when checking multiple conditions. It checks the value of the language variable and executes the corresponding case block.
+  // If no case matches, it executes the default block.
+  // CASE is the SAME as an IF statement/LOGIC , and BREAK is the SAME as a RETURN statement.
+
+  // switch = like an if / else if / else chain
+  // case = like an individual if or else if condition
+  // break = stop checking the switch (prevents falling through to the next case)
+  // default = like the final else if no cases matched
   switch (language) {
     case "english":
       greeting = `🇺🇸 Hello, ${name}!`;
