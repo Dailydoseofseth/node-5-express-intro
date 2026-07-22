@@ -82,7 +82,7 @@ app.get("/hap-bday/:name", (req, res) => {
 
 // 2. 🏆 Add a /say-hello/:name/:language endpoint that says hello in multiple languages.
 
-// THIS ADDS DYNAMIC PARAMETERS TO THE ENDPOINT (URL being the 1st og the 2 ARGs & callback FUNC being the 2nd ARG), SO THAT, THE USER CAN INPUT THEIR NAME AND LANGUAGE OF CHOICE in the browsers URL bar. 
+// THIS ADDS DYNAMIC PARAMETERS TO THE ENDPOINT (URL being the 1st og the 2 ARGs & callback FUNC being the 2nd ARG), SO THAT, THE USER CAN INPUT THEIR NAME AND LANGUAGE OF CHOICE in the browsers URL bar.
 // THE SWITCH STATEMENT THEN CHECKS THE LANGUAGE PARAMETER AND RESPONDS WITH THE APPROPRIATE GREETING. IF THE LANGUAGE IS NOT SUPPORTED, IT RESPONDS WITH A DEFAULT MESSAGE.
 app.get("/say-hello/:name/:language", (req, res) => {
   console.log(req.params);
@@ -115,7 +115,8 @@ app.get("/say-hello/:name/:language", (req, res) => {
       greeting = `🇹🇷 Merhaba, ${name}!`;
       break;
     case "taiwanese":
-      greeting = `💮🇹🇼 李浩(Li ho), ${name}!`;
+      greeting = `💮🇹🇼 你好 (Nǐ hǎo), ${name}!`;
+      // 李浩(Li ho), 午安 (Wǔ ān), 晚安 (Wǎn ān), 嗨 (Hāi), 哈囉 (Hāluō)
       break;
     default:
       greeting = "😵🏴‍☠️ Language not supported. More coming SOON!";
